@@ -47,12 +47,3 @@ py -3.11 webcam_reactor.py
 * Controls
 
 Press the "q" key while the application window is focused to exit the program.
-
-* Next Steps & Customization
-
-If you decide to return to the facial recognition idea with the images, remember these steps:
-
-Install the dlib library (which requires cmake):
-
-py -3.11 -m pip install cmake
-py -3.11 -m pip install dlib
