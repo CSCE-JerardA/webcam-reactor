@@ -1,0 +1,61 @@
+Python Bytecode and Compiled Files
+
+####################################
+*.pyc
+pycache/
+*.pyd
+*.so
+*.o
+*.dll
+
+Virtual Environments (CRITICAL)
+
+#################################
+
+Venv folders in various naming conventions
+
+venv/
+.venv/
+env/
+.env/
+.tox/
+dist/
+build/
+develop-eggs/
+.eggs/
+
+Dependencies and Package Management
+
+####################################
+
+Packages installed by pip
+
+*.egg-info/
+.coverage
+htmlcov/
+.nox/
+
+Pytest and Testing Artifacts
+
+##############################
+.pytest_cache/
+
+Editor and IDE Files
+
+######################
+
+Visual Studio Code
+
+.vscode/
+
+JetBrains IDEs (PyCharm, IntelliJ)
+
+.idea/
+
+macOS files
+
+.DS_Store
+
+Windows files
+
+Thumbs.db
