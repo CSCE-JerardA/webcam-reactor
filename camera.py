@@ -3,9 +3,9 @@ import mediapipe as mp
 import numpy as np
 
 
-mp_hands = mp.solutions.hands
+my_hands = mp.solutions.hands
 
-hands = mp_hands.Hands(
+hands = my_hands.Hands(
     static_image_mode=False,
     max_num_hands=2,
     min_detection_confidence=0.5,
@@ -26,7 +26,7 @@ while cap.isOpened():
     
     success, image = cap.read()
     if not success:
-        print("Ignoring empty camera frame.")
+        print("Empty camera frame")
         
         continue
 
@@ -52,7 +52,7 @@ while cap.isOpened():
             mp_drawing.draw_landmarks(
                 image_bgr,
                 hand_landmarks,
-                mp_hands.HAND_CONNECTIONS,
+                my_hands.HAND_CONNECTIONS,
                 
                 mp_drawing.DrawingSpec(color=(0, 255, 0), thickness=2, circle_radius=4),
                 
@@ -65,13 +65,13 @@ while cap.isOpened():
     text_color = (255, 255, 255) # White
 
     if hand_count == 0:
-        reaction_text = "Reactor Waiting... Show your hands!"
+        reaction_text = "Show me them hands bruh"
         text_color = (0, 0, 255)  # Red
     elif hand_count == 1:
-        reaction_text = "ONE HAND: Single Focus Activated."
+        reaction_text = "ONE HAND?"
         text_color = (0, 255, 255) # Yellow
     elif hand_count == 2:
-        reaction_text = "TWO HANDS: Dual-Wield Power!"
+        reaction_text = "TWO HANDS?!?!"
         text_color = (0, 255, 0)  # Green
 
     
