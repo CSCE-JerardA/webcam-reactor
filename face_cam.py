@@ -1,7 +1,8 @@
 import cv2
 import numpy as np
 import mediapipe as mp
-import dlib 
+
+
 
 mp_drawings = mp.solutions.drawing_utils
 
@@ -13,14 +14,26 @@ if not cap.isOpened():
 
 print("Webcam is up! Press q to quit")
 
+happy_hubert = cv2.imread("hubert_happy.jpg")
+concerned_hubert = cv2.imread("hubert_straight_face.jpg")
+
+
+
+if happy_hubert is None or concerned_hubert is None:
+    print("Nobody's there :( ")
+    
+current_react = concerned_hubert
+
 while cap.isOpened():
+
     success, image = cap.read()
 
     if not success:
-        print("Show your face twin")
+        print("Show me your face twin")
 
         continue
 
-happy_hubert = cv2.imread('hubert_happy.jpg')
-concerned_hubert = cv2.imread('straight')
+    cv2.imshow("User WebCam", image)
 
+    if current_react is None:
+        cv2.imshow("Hubert Window", concerned_hubert)
