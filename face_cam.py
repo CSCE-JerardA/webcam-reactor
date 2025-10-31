@@ -24,6 +24,3 @@ while cap.isOpened():
 happy_hubert = cv2.imread('hubert_happy.jpg')
 concerned_hubert = cv2.imread('straight')
 
-try:
-
-
