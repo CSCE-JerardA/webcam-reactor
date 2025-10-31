@@ -2,9 +2,9 @@ import cv2
 import numpy as np
 import mediapipe as mp
 
-mp_faceM = mp.solutions.faceM
+mp_face_mesh = mp.solutions.face_mesh
 
-faceM = mp_faceM.FaceMesh(
+face_mesh = mp_face_mesh.FaceMesh(
 
     max_faces = 1,
     refine_landmarks = True,
