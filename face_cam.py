@@ -53,7 +53,7 @@ while cap.isOpened():
 
     image = cv2.flip(image, 1)
 
-    image_rgb = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+    image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
     results = face_mesh.process(image_rgb)
 
@@ -89,7 +89,7 @@ while cap.isOpened():
     cv2.imshow("User WebCam", image)
 
     if current_react is None:
-        cv2.imshow("Hubert Window", concerned_hubert)
+        cv2.imshow("Hubert Window", current_react)
 
     if cv2.waitKey(5) & 0xFF == ord("q"):
         break
