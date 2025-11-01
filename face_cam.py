@@ -30,6 +30,17 @@ concerned_hubert = cv2.imread("hubert_straight_face.jpg")
 
 current_react = concerned_hubert
 
+if happy_hubert is None:
+    print("Couldn't find Happy Hubert")
+    exit()
+    
+if concerned_hubert is None :
+    print("Couldn't find Concerned Hubert")
+    exit()
+    
+
+SMILE_THRESHOLD = 0.12
+
 
 while cap.isOpened():
 
@@ -46,9 +57,23 @@ while cap.isOpened():
 
     results = face_mesh.process(image_rgb)
 
+    current_react = concerned_hubert
+
     if results.multi_face_landmarks:
 
         face_landmarks = results.multi_face_landmarks[0]
+
+        p1 = face_landmarks.landmark[61]
+        p2 = face_landmarks.landmark[291]
+
+        mouth_width = np.sqrt((p2.x - p1.x) ** 2 + (p2.y - p1.y) ** 2 )
+
+        if mouth_width > SMILE_THRESHOLD :
+            current_react = happy_hubert
+        else:
+            current_react = concerned_hubert
+
+
 
         mp_drawings.draw_landmarks(
 
@@ -59,10 +84,7 @@ while cap.isOpened():
             connection_drawing_spec = drawing_spec
         )
 
-        current_react = happy_hubert
-
-    else:
-        current_react = concerned_hubert
+       
     
     cv2.imshow("User WebCam", image)
 
