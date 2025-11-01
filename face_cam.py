@@ -6,7 +6,7 @@ mp_face_mesh = mp.solutions.face_mesh
 
 face_mesh = mp_face_mesh.FaceMesh(
 
-    max_faces = 1,
+    max_num_faces = 1,
     refine_landmarks = True,
     min_detection_confidence = 0.5,
     min_tracking_confidence = 0.5
@@ -14,6 +14,7 @@ face_mesh = mp_face_mesh.FaceMesh(
 )
 
 mp_drawings = mp.solutions.drawing_utils
+drawing_spec = mp_drawings.DrawingSpec(thickness=1, circle_radius=1, color=(0, 255, 0))
 
 
 cap = cv2.VideoCapture(0)
@@ -43,7 +44,7 @@ while cap.isOpened():
 
     image_rgb = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
-    results = faceM.process(image_rgb)
+    results = face_mesh.process(image_rgb)
 
     if results.multi_face_landmarks:
 
@@ -51,9 +52,11 @@ while cap.isOpened():
 
         mp_drawings.draw_landmarks(
 
-            image,
-            face_landmarks,
-            mp_faceM
+            image = image,
+            landmark_list =face_landmarks,
+            connections = mp_face_mesh.FACEMESH_CONTOURS,
+            landmark_drawing_spec = drawing_spec,
+            connection_drawing_spec = drawing_spec
         )
 
         current_react = happy_hubert
@@ -69,6 +72,6 @@ while cap.isOpened():
     if cv2.waitKey(5) & 0xFF == ord("q"):
         break
 
-faceM.close()
+face_mesh.close()
 cap.release()
 cv2.destroyAllWindows()
